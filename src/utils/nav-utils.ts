@@ -25,15 +25,7 @@ export function resolvePageKey(
 	if (url.searchParams.has("tag")) return "tags";
 	if (pathname === "/archive") return "archive";
 	if (pathname === "/friends") return "friends";
-	if (pathname === "/moments") return "moments";
-	if (pathname === "/anime") return "anime";
-	if (pathname === "/compass") return "compass";
-	if (pathname === "/skills") return "skills";
-	if (pathname === "/projects") return "projects";
 	if (pathname === "/devices") return "devices";
-	if (pathname === "/timeline") return "timeline";
-	if (pathname === "/albums" || pathname.startsWith("/albums/"))
-		return "albums";
 	if (pathname === "/about") return "about";
 	return "";
 }

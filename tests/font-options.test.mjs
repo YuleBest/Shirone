@@ -12,14 +12,6 @@ describe("Font Configuration & Resolver Tests", () => {
 		const systemConfig = {
 			mode: "system",
 			fontFamilies: [],
-			subsetting: {
-				enable: false,
-				includeContent: false,
-				includeI18n: false,
-				includeConfig: false,
-				includeCommon: true,
-				allowRemoteText: false,
-			},
 			budget: {
 				maxTotalBytes: 4 * 1024 * 1024,
 				maxFamilyBytes: 2 * 1024 * 1024,
@@ -35,7 +27,7 @@ describe("Font Configuration & Resolver Tests", () => {
 		assert.equal(createFontRoleStyle(resolved), "");
 	});
 
-	it("resolves default Fontsource baseline with Roboto and JetBrains Mono", () => {
+	it("resolves custom Fontsource baseline with Roboto and JetBrains Mono", () => {
 		const defaultConfig = {
 			mode: "custom",
 			fontFamilies: [
@@ -82,14 +74,6 @@ describe("Font Configuration & Resolver Tests", () => {
 					preload: false,
 				},
 			],
-			subsetting: {
-				enable: false,
-				includeContent: false,
-				includeI18n: false,
-				includeConfig: false,
-				includeCommon: true,
-				allowRemoteText: false,
-			},
 			budget: {
 				maxTotalBytes: 4 * 1024 * 1024,
 				maxFamilyBytes: 2 * 1024 * 1024,
@@ -110,8 +94,8 @@ describe("Font Configuration & Resolver Tests", () => {
 		assert.match(style, /--m3e-font-mono-family:\s*"JetBrains Mono";/);
 	});
 
-	it("resolves active configuration (Outfit for body + Yozai for cjk + JetBrains Mono for mono)", () => {
-		const activeConfig = {
+	it("resolves custom mixed local + fontsource roles", () => {
+		const mixedConfig = {
 			mode: "custom",
 			fontFamilies: [
 				{
@@ -173,21 +157,13 @@ describe("Font Configuration & Resolver Tests", () => {
 					preload: false,
 				},
 			],
-			subsetting: {
-				enable: false,
-				includeContent: false,
-				includeI18n: false,
-				includeConfig: false,
-				includeCommon: true,
-				allowRemoteText: false,
-			},
 			budget: {
 				maxTotalBytes: 20 * 1024 * 1024,
 				maxFamilyBytes: 16 * 1024 * 1024,
 			},
 		};
 
-		const resolved = resolveFontOptions(activeConfig);
+		const resolved = resolveFontOptions(mixedConfig);
 		assert.equal(resolved.mode, "custom");
 		assert.equal(getLocalFontVariants(resolved, "cjk").length, 1);
 		assert.equal(getFontsourceImports(resolved).length, 4);
@@ -222,14 +198,6 @@ describe("Font Configuration & Resolver Tests", () => {
 							preload: false,
 						},
 					],
-					subsetting: {
-						enable: false,
-						includeContent: false,
-						includeI18n: false,
-						includeConfig: false,
-						includeCommon: true,
-						allowRemoteText: false,
-					},
 					budget: { maxTotalBytes: 4194304, maxFamilyBytes: 2097152 },
 				}),
 			/local fonts must be font files under src\/assets\/fonts/,
@@ -274,14 +242,6 @@ describe("Font Configuration & Resolver Tests", () => {
 							preload: false,
 						},
 					],
-					subsetting: {
-						enable: false,
-						includeContent: false,
-						includeI18n: false,
-						includeConfig: false,
-						includeCommon: true,
-						allowRemoteText: false,
-					},
 					budget: { maxTotalBytes: 4194304, maxFamilyBytes: 2097152 },
 				}),
 			/role body is already defined/,

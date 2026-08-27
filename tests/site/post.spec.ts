@@ -102,7 +102,7 @@ test.describe("Site post", () => {
 			page.locator(".markdown-content #github-repository-cards"),
 		).toBeVisible();
 		await waitForPageReady();
-		await expectHeadingSpacing(["github-repository-cards", "mermaid-diagrams"]);
+		await expectHeadingSpacing(["github-repository-cards"]);
 	});
 
 	test("guide cover is eager and responsive", async ({ page }) => {

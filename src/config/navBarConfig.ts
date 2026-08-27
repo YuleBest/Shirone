@@ -1,9 +1,6 @@
 import I18nKey from "@i18n/i18nKey";
 import { i18n } from "@i18n/translation";
 import { devicesConfig } from "@/config/devicesConfig";
-import { projectsConfig } from "@/config/projectsConfig";
-import { skillsConfig } from "@/config/skillsConfig";
-import { timelineConfig } from "@/config/timelineConfig";
 import type { NavBarConfig, NavBarLink } from "@/types/navBarConfig";
 
 /**
@@ -32,53 +29,11 @@ export const LinkPresets: Record<string, NavBarLink> = {
 		icon: "material-symbols:handshake-outline-rounded",
 		pageKey: "friends",
 	},
-	Moments: {
-		name: i18n(I18nKey.moments),
-		url: "/moments/",
-		icon: "material-symbols:auto-awesome-outline-rounded",
-		pageKey: "moments",
-	},
-	Anime: {
-		name: i18n(I18nKey.anime),
-		url: "/anime/",
-		icon: "material-symbols:live-tv-outline-rounded",
-		pageKey: "anime",
-	},
-	Compass: {
-		name: i18n(I18nKey.compass),
-		url: "/compass/",
-		icon: "material-symbols:explore-rounded",
-		pageKey: "compass",
-	},
-	Skills: {
-		name: i18n(I18nKey.skills),
-		url: "/skills/",
-		icon: "material-symbols:workspaces-outline-rounded",
-		pageKey: "skills",
-	},
-	Projects: {
-		name: i18n(I18nKey.projects),
-		url: "/projects/",
-		icon: "material-symbols:deployed-code-outline-rounded",
-		pageKey: "projects",
-	},
 	Devices: {
 		name: i18n(I18nKey.devices),
 		url: "/devices/",
 		icon: "material-symbols:devices-rounded",
 		pageKey: "devices",
-	},
-	Timeline: {
-		name: i18n(I18nKey.timeline),
-		url: "/timeline/",
-		icon: "material-symbols:timeline-rounded",
-		pageKey: "timeline",
-	},
-	Albums: {
-		name: i18n(I18nKey.albums),
-		url: "/albums/",
-		icon: "material-symbols:photo-library-outline-rounded",
-		pageKey: "albums",
 	},
 	Categories: {
 		name: i18n(I18nKey.categories),
@@ -112,18 +67,11 @@ export const navBarConfig: NavBarConfig = {
 		LinkPresets.Home,
 		LinkPresets.Archive,
 		LinkPresets.Friends,
-		LinkPresets.Moments,
-		LinkPresets.Anime,
-		LinkPresets.Compass,
-		LinkPresets.Albums,
 		{
 			name: i18n(I18nKey.more),
 			icon: "material-symbols:apps-rounded",
 			children: [
-				...(timelineConfig.enable ? [LinkPresets.Timeline] : []),
-				...(projectsConfig.enable ? [LinkPresets.Projects] : []),
 				...(devicesConfig.enable ? [LinkPresets.Devices] : []),
-				...(skillsConfig.enable ? [LinkPresets.Skills] : []),
 				// 分类/标签入口不进导航菜单（避免菜单项过多），预设已登记指向独立页面，
 				// 需要时取消注释即可
 				// LinkPresets.Categories,

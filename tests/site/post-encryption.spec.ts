@@ -141,12 +141,6 @@ test.describe("文章加密交互与解密流", () => {
 
 		// 解密后运行时能力必须真实完成初始化，而不是只插入 HTML。
 		await expect(page.locator(".markdown-content pre").first()).toBeVisible();
-		await expect(
-			page.locator('.markdown-mermaid[data-mermaid-state="ready"]'),
-		).toBeVisible({ timeout: 15000 });
-		await expect(
-			page.locator(".markdown-mermaid [data-mermaid-svg]"),
-		).toBeVisible();
 
 		// 验证动态重建的 TOC 结构与样式完整性
 		const tocHeading = page

@@ -1,28 +1,19 @@
-import { expect, test } from "@playwright/test";
 import { readFile } from "node:fs/promises";
+import { expect, test } from "@playwright/test";
 import {
 	normalizeDiscoveryCount,
 	resolveArticleDiscoveryOptions,
 } from "../../src/config/articleConfig";
 import I18nKey from "../../src/i18n/i18nKey";
-import { en } from "../../src/i18n/languages/en";
-import { es } from "../../src/i18n/languages/es";
-import { id } from "../../src/i18n/languages/id";
-import { ja } from "../../src/i18n/languages/ja";
-import { ko } from "../../src/i18n/languages/ko";
-import { th } from "../../src/i18n/languages/th";
-import { tr } from "../../src/i18n/languages/tr";
-import { vi } from "../../src/i18n/languages/vi";
 import { zh_CN } from "../../src/i18n/languages/zh_CN";
-import { zh_TW } from "../../src/i18n/languages/zh_TW";
 import {
+	type DiscoverableArticle,
 	discoverArticles,
 	selectRandomArticles,
 	selectRelatedArticles,
-	type DiscoverableArticle,
 } from "../../src/utils/article-discovery";
 
-const translations = [en, es, id, ja, ko, th, tr, vi, zh_CN, zh_TW];
+const translations = [zh_CN];
 const discoveryComponentPath = new URL(
 	"../../src/components/organisms/ArticleDiscovery.astro",
 	import.meta.url,

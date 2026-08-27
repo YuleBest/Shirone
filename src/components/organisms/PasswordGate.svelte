@@ -37,27 +37,16 @@ let error = $state("");
 let loading = $state(false);
 let passwordVisible = $state(false);
 
-const isPostScope = scope.startsWith("post:");
-const resolvedTitle =
-	title ||
-	(isPostScope
-		? i18n(I18nKey.postPasswordTitle)
-		: i18n(I18nKey.albumPasswordTitle));
+const resolvedTitle = title || i18n(I18nKey.postPasswordTitle);
 const resolvedDescription =
-	description ||
-	(isPostScope
-		? i18n(I18nKey.postPasswordDescription)
-		: i18n(I18nKey.albumPasswordDescription));
+	description || i18n(I18nKey.postPasswordDescription);
 const resolvedHeadingIcon =
-	headingIcon ||
-	(isPostScope
-		? "material-symbols:article-outline-rounded"
-		: "material-symbols:photo-library-outline-rounded");
+	headingIcon || "material-symbols:article-outline-rounded";
 
 const inputId = `password-gate-${scope.replace(/[^a-zA-Z0-9_-]/g, "-")}`;
 const headingId = `${inputId}-title`;
 const payloadId = protectedPayloadId(payload);
-const expectedContentType = isPostScope ? "text/html" : "application/json";
+const expectedContentType = "text/html";
 
 onMount(() => {
 	if (payload.contentType !== expectedContentType) return;
@@ -71,9 +60,7 @@ function clearError() {
 
 async function unlock() {
 	if (!password.trim()) {
-		error = isPostScope
-			? i18n(I18nKey.postPasswordRequired)
-			: i18n(I18nKey.albumPasswordRequired);
+		error = i18n(I18nKey.postPasswordRequired);
 		return;
 	}
 	error = "";
@@ -84,9 +71,7 @@ async function unlock() {
 		writeProtectedSession(scope, payloadId, content);
 		onunlocked(content);
 	} catch {
-		error = isPostScope
-			? i18n(I18nKey.postPasswordInvalid)
-			: i18n(I18nKey.albumPasswordInvalid);
+		error = i18n(I18nKey.postPasswordInvalid);
 	} finally {
 		loading = false;
 	}
@@ -141,12 +126,8 @@ async function unlock() {
 					name="password"
 					type={passwordVisible ? "text" : "password"}
 					bind:value={password}
-					label={isPostScope
-						? i18n(I18nKey.postPasswordLabel)
-						: i18n(I18nKey.albumPasswordLabel)}
-					placeholder={isPostScope
-						? i18n(I18nKey.postPasswordLabel)
-						: i18n(I18nKey.albumPasswordLabel)}
+					label={i18n(I18nKey.postPasswordLabel)}
+					placeholder={i18n(I18nKey.postPasswordLabel)}
 					variant="outlined"
 					autocomplete="current-password"
 					disabled={loading}
@@ -163,8 +144,8 @@ async function unlock() {
 						size="small"
 						label={i18n(
 							passwordVisible
-								? (isPostScope ? I18nKey.postPasswordHide : I18nKey.albumPasswordHide)
-								: (isPostScope ? I18nKey.postPasswordShow : I18nKey.albumPasswordShow),
+								? I18nKey.postPasswordHide
+								: I18nKey.postPasswordShow,
 						)}
 						disabled={loading}
 						onclick={() => (passwordVisible = !passwordVisible)}
@@ -174,12 +155,8 @@ async function unlock() {
 			<Button
 				type="submit"
 				label={loading
-					? (isPostScope
-							? i18n(I18nKey.postPasswordUnlocking)
-							: i18n(I18nKey.albumPasswordUnlocking))
-					: (isPostScope
-							? i18n(I18nKey.postPasswordUnlock)
-							: i18n(I18nKey.albumPasswordUnlock))}
+					? i18n(I18nKey.postPasswordUnlocking)
+					: i18n(I18nKey.postPasswordUnlock)}
 				icon={loading
 					? "material-symbols:progress-activity"
 					: "material-symbols:lock-open-rounded"}

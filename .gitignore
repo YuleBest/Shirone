@@ -29,18 +29,7 @@ yarn.lock
 # ide
 .idea
 
-# generated font subsets
-src/assets/fonts/.subset/
 *.iml
-
-# anime snapshot data & downloaded covers
-src/data/anime-snapshots/*.json
-public/assets/anime/covers/*
-!public/assets/anime/covers/.gitkeep
-
-# generated responsive moment thumbnails
-public/assets/moments/thumbnails/*
-!public/assets/moments/thumbnails/.gitkeep
 
 # local tooling artifacts
 .zcode/

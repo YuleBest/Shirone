@@ -22,7 +22,6 @@ import { rehypeResponsiveTables } from "../plugins/rehype-responsive-tables.mjs"
 import { parseDirectiveNode } from "../plugins/remark-directive-rehype.js";
 import { remarkEscapeNumericColons } from "../plugins/remark-escape-numeric-colons.mjs";
 import { remarkExcerpt } from "../plugins/remark-excerpt.js";
-import { remarkMermaid } from "../plugins/remark-mermaid.mjs";
 import { remarkReadingTime } from "../plugins/remark-reading-time.mjs";
 
 /**
@@ -34,7 +33,6 @@ export const siteRemarkPlugins = [
 	remarkMath,
 	remarkFileTree,
 	remarkCodeTree,
-	remarkMermaid,
 	remarkReadingTime,
 	remarkExcerpt,
 	remarkGithubAdmonitionsToDirectives,

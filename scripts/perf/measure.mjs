@@ -2,15 +2,13 @@
  * Shirone Performance Measurement Tool (P3 Observability)
  * Measures LCP, CLS, FCP, TTFB, and DOM ready times across key pages.
  */
-import { chromium } from "@playwright/test";
+
 import { spawn } from "node:child_process";
+import { chromium } from "@playwright/test";
 
 const TEST_PAGES = [
 	{ name: "Home", path: "/" },
 	{ name: "Friends", path: "/friends/" },
-	{ name: "Projects", path: "/projects/" },
-	{ name: "Anime", path: "/anime/" },
-	{ name: "Moments", path: "/moments/" },
 	{ name: "Archive", path: "/archive/" },
 ];
 

@@ -95,12 +95,6 @@ test.describe("MDX Support and M3E Integration", () => {
 
 		const katex = page.locator(".katex");
 		await expect(katex.first()).toBeVisible();
-
-		const mermaid = page.locator(".markdown-mermaid");
-		await expect(mermaid).toHaveAttribute("data-mermaid-state", "ready", {
-			timeout: 10_000,
-		});
-		await expect(mermaid.locator("[data-mermaid-svg]")).toHaveCount(1);
 	});
 
 	test("Swup client-side navigation smoothly loads MDX post and hydrates islands", async ({

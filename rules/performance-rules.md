@@ -39,8 +39,7 @@
 ## 4. 构建与扩展功能红线
 
 1. **默认保持离线纯净构建**
-   - 构建脚本严禁依赖不可靠的外部第三方 API；
-   - 字体子集化默认 `allowRemoteText: false`。
+   - 构建脚本严禁依赖不可靠的外部第三方 API。
 2. **可选功能严格遵守「零额外负担」**
    - 关闭配置时：0 外部网络请求、0 额外 DOM 占位、0 主 bundle 体积增加。
 
@@ -52,7 +51,6 @@
 
 ```bash
 npx.cmd astro check          # 必须 0 errors / 0 warnings
-pnpm.cmd fonts:check         # 字体预算检查必须通过
 pnpm.cmd run perf:measure    # LCP < 500ms，CLS < 0.05
 pnpm.cmd build               # 生产构建成功无异常告警
 ```

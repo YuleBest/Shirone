@@ -8,12 +8,6 @@
  */
 
 export {
-	animeConfig,
-	resolveAnimeOptions,
-	resolvedAnimeOptions,
-} from "./animeConfig";
-export { announcementConfig } from "./announcementConfig";
-export {
 	type ArticleDiscoveryOptions,
 	type ArticleShareOptions,
 	articleConfig,
@@ -41,16 +35,9 @@ export {
 	resolveImageBloomOptions,
 } from "./imageBloomConfig";
 export { licenseConfig } from "./licenseConfig";
-export {
-	clampMusicVolume,
-	musicConfig,
-	type ResolvedMusicOptions,
-	resolveMusicOptions,
-} from "./musicConfig";
 export { LinkPresets, navBarConfig } from "./navBarConfig";
 export { POST_CARD_MIN_WIDTH, postListConfig } from "./postListConfig";
 export { profileConfig } from "./profileConfig";
-export { projectsConfig } from "./projectsConfig";
 export { sidebarConfig } from "./sidebarConfig";
 export {
 	getDefaultSpec,
@@ -59,5 +46,3 @@ export {
 	resolveTextureOptions,
 	siteConfig,
 } from "./siteConfig";
-export { skillsConfig } from "./skillsConfig";
-export { timelineConfig } from "./timelineConfig";

@@ -30,14 +30,7 @@ export type SidebarPage =
 	| "home" // 首页（[...page].astro 及其分页）
 	| "archive" // 归档
 	| "friends" // 友链
-	| "moments" // 动态
-	| "anime" // 番剧收藏
-	| "compass" // 站点罗盘
-	| "skills" // 技能
-	| "projects" // 项目
 	| "devices" // 设备展示
-	| "timeline" // 时间线
-	| "albums" // 相册
 	| "about" // 关于
 	| "categories" // 分类索引
 	| "tags" // 标签索引
@@ -79,16 +72,6 @@ export interface TagsWidget {
 	pages?: SidebarPage[];
 }
 
-/** 公告（内容来自 announcementConfig，text 为空时不渲染） */
-export interface AnnouncementWidget {
-	type: "announcement";
-	enable: boolean;
-	slot: SidebarWidgetSlot;
-	column?: SidebarColumn;
-	/** 限定显示的页面，省略或空数组表示所有页面 */
-	pages?: SidebarPage[];
-}
-
 /** 站点统计（数据自动汇总：文章/动态/分类/标签/总字数/运行天数） */
 export interface StatsWidget {
 	type: "stats";
@@ -120,25 +103,13 @@ export interface TocWidget {
 	pages?: SidebarPage[];
 }
 
-/** 持久音乐播放器（内容来自 musicConfig） */
-export interface MusicWidget {
-	type: "music";
-	enable: boolean;
-	slot: SidebarWidgetSlot;
-	column?: SidebarColumn;
-	/** 限定显示的页面，省略或空数组表示所有页面 */
-	pages?: SidebarPage[];
-}
-
 export type SidebarWidget =
 	| ProfileWidget
 	| CategoriesWidget
 	| TagsWidget
-	| AnnouncementWidget
 	| StatsWidget
 	| CalendarWidget
-	| TocWidget
-	| MusicWidget;
+	| TocWidget;
 
 /**
  * 侧栏整体配置。components 渲染顺序 = 数组顺序，top 恒排在 sticky 之前。

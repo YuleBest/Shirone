@@ -90,27 +90,6 @@ export interface FontFamilyDefinition {
 	licenseFile?: string;
 }
 
-/**
- * 字体子集化配置选项（预留配置项）
- */
-export interface FontSubsettingOptions {
-	/** 是否开启构建期字符子集裁剪 */
-	enable: boolean;
-	/** 是否扫描文章 Markdown/MDX 内容以提取字形 */
-	includeContent: boolean;
-	/** 是否包含 i18n 语言词典字符 */
-	includeI18n: boolean;
-	/** 是否包含站点配置文字字符 */
-	includeConfig: boolean;
-	/** 是否包含通用标点与基础字符 */
-	includeCommon: boolean;
-	/**
-	 * 是否允许拉取远端文本进行分析。
-	 * 安全限制：在远端数据契约确立前必须保持为 false，禁止构建访问外部网络。
-	 */
-	allowRemoteText: boolean;
-}
-
 /** 字体打包体积预算限制（防止意外引入巨型字体导致首屏加载缓慢） */
 export interface FontBudget {
 	/** 全站字体产物总大小上限（单位：字节，默认 4MB = 4 * 1024 * 1024） */
@@ -125,8 +104,6 @@ export interface FontConfig {
 	mode: FontMode;
 	/** 字体族清单列表 */
 	fontFamilies: FontFamilyDefinition[];
-	/** 字体子集化配置 */
-	subsetting: FontSubsettingOptions;
 	/** 字体体积预算限制 */
 	budget: FontBudget;
 }
@@ -160,6 +137,5 @@ export interface ResolvedFontOptions {
 	mode: FontMode;
 	roles: Record<FontRole, ResolvedFontRole>;
 	preloadRoles: FontRole[];
-	subsetting: FontSubsettingOptions;
 	budget: FontBudget;
 }

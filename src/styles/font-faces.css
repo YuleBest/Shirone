@@ -1,5 +1,9 @@
-/* Font roles are set by the build-time manifest in Layout.astro. */
+/* Font roles use system-family fallbacks in pure system mode.
+   --font-body / --font-cjk are defined here (they were previously injected at
+   build time by the now-removed custom-font pipeline). */
 :root {
+    --font-body: ui-sans-serif, system-ui, sans-serif;
+    --font-cjk: system-ui, sans-serif;
     --font-body-fallback: ui-sans-serif, system-ui, sans-serif;
     --font-cjk-fallback: system-ui, sans-serif;
     --m3e-font-mono-fallback: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
@@ -15,8 +19,7 @@ code,
 kbd,
 samp,
 .expressive-code,
-.expressive-code *,
-.mermaid code {
+.expressive-code * {
     font-family: var(--m3e-font-mono-family) !important;
 }
 /* KaTeX font-display swap override for non-blocking formula text rendering */

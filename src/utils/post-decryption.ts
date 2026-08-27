@@ -5,7 +5,6 @@ import { initCodeCopyButtons } from "./code-copy";
 import { initCodeTrees } from "./code-tree";
 import { initFancybox } from "./fancybox-handler";
 import { initKaTeXScrollbars } from "./katex-scroll";
-import { scheduleMermaidRender } from "./mermaid";
 import { prefersReducedMotion } from "./motion";
 
 type DecryptedHeading = {
@@ -39,9 +38,6 @@ export function initPostDecryption(container: HTMLElement): void {
 	void initFancybox().catch((error) => {
 		console.error("Failed to initialize Fancybox after post decryption", error);
 	});
-
-	// The global Mermaid lifecycle is initialized by Layout; dynamic HTML needs a scan.
-	scheduleMermaidRender();
 
 	initKaTeXScrollbars(container);
 

@@ -125,7 +125,7 @@ test.describe("设备展示页 Swup 导航", () => {
 	test.use({ viewport: { width: 1280, height: 900 } });
 
 	test("从持久顶栏进入后同步页面、导航与侧栏状态", async ({ page }) => {
-		await page.goto("/skills/", { waitUntil: "domcontentloaded" });
+		await page.goto("/friends/", { waitUntil: "domcontentloaded" });
 		await page.getByRole("button", { name: "More", exact: true }).click();
 		await page.locator('a[data-nav-key="devices"]').click();
 

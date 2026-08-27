@@ -32,9 +32,8 @@ const cases = [
 	{ name: "首页", path: "/" },
 	{ name: "首页-网格", path: "/", layout: "grid" },
 	{ name: "归档", path: "/archive/" },
-	{ name: "动态", path: "/moments/", ready: ".moment-card" },
 	{ name: "关于", path: "/about/" },
-	{ name: "文章页", path: "/posts/guide/" },
+	{ name: "文章页", path: "/posts/markdown-enhancements/" },
 ];
 
 async function captureAndCompare(

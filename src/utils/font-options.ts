@@ -163,9 +163,6 @@ export function resolveFontOptions(config: FontConfig): ResolvedFontOptions {
 		fail("mode", "must be system or custom");
 	if (!Array.isArray(config.fontFamilies))
 		fail("fontFamilies", "must be an array");
-	if (typeof config.subsetting.allowRemoteText !== "boolean") {
-		fail("subsetting.allowRemoteText", "must be a boolean");
-	}
 	assertFinitePositive(config.budget.maxTotalBytes, "budget.maxTotalBytes");
 	assertFinitePositive(config.budget.maxFamilyBytes, "budget.maxFamilyBytes");
 	if (config.budget.maxFamilyBytes > config.budget.maxTotalBytes) {
@@ -220,7 +217,6 @@ export function resolveFontOptions(config: FontConfig): ResolvedFontOptions {
 		preloadRoles: (Object.keys(roles) as FontRole[]).filter(
 			(role) => roles[role].preload,
 		),
-		subsetting: { ...config.subsetting },
 		budget: { ...config.budget },
 	};
 }

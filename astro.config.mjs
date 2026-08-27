@@ -1,5 +1,3 @@
-import { existsSync } from "node:fs";
-import { basename, extname } from "node:path";
 import { fileURLToPath } from "node:url";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
@@ -8,136 +6,22 @@ import { pluginCollapsibleSections } from "@expressive-code/plugin-collapsible-s
 import { pluginLineNumbers } from "@expressive-code/plugin-line-numbers";
 import swup from "@swup/astro";
 import tailwindcss from "@tailwindcss/vite";
-import { defineConfig, fontProviders } from "astro/config";
+import { defineConfig } from "astro/config";
 import expressiveCode from "astro-expressive-code";
 import icon from "astro-icon";
 import { expressiveCodeConfig } from "./src/config/expressiveCodeConfig.ts";
-import { resolvedFontOptions } from "./src/config/fontConfig.ts";
-import { musicConfig, resolveMusicOptions } from "./src/config/musicConfig.ts";
-import { sidebarConfig } from "./src/config/sidebarConfig.ts";
 import { siteConfig } from "./src/config/siteConfig.ts";
 import { pluginCustomCopyButton } from "./src/plugins/expressive-code/custom-copy-button.js";
 import { pluginLanguageBadge } from "./src/plugins/expressive-code/language-badge.ts";
-import { getLocalFontVariants } from "./src/utils/font-options.ts";
 import { siteMarkdownProcessor } from "./src/utils/markdown-processor.mjs";
 
-const musicWidgetEnabled =
-	sidebarConfig.enable &&
-	sidebarConfig.components.some(
-		(widget) => widget.type === "music" && widget.enable,
-	);
-const musicFeatureEnabled =
-	resolveMusicOptions(musicConfig) !== null && musicWidgetEnabled;
-const musicSidebarModuleId = "virtual:shirone-music-sidebar";
-const resolvedMusicSidebarModuleId = `\0${musicSidebarModuleId}`;
-
-const optionalMusicSidebarPlugin = {
-	name: "shirone-optional-music-sidebar",
-	enforce: "pre",
-	resolveId(source) {
-		return source === musicSidebarModuleId
-			? resolvedMusicSidebarModuleId
-			: null;
-	},
-	load(id) {
-		if (id !== resolvedMusicSidebarModuleId) return null;
-		return musicFeatureEnabled
-			? 'export { default } from "/src/components/organisms/music/MusicSidebar.astro";'
-			: "export default null;";
-	},
-	generateBundle(_options, bundle) {
-		if (!musicFeatureEnabled) {
-			for (const fileName of Object.keys(bundle)) {
-				if (
-					fileName.includes("MusicSidebarClient") ||
-					fileName.startsWith("_astro/music.") ||
-					fileName.includes("/music.")
-				) {
-					delete bundle[fileName];
-				}
-			}
-		}
-	},
-};
-
 const isBuildCommand = process.argv.includes("build");
-
-function resolveVariantSrc(file) {
-	if (isBuildCommand && resolvedFontOptions.subsetting?.enable) {
-		const ext = extname(file);
-		const baseName = basename(file, ext);
-		const subsetPath = `src/assets/fonts/.subset/${baseName}.subset.woff2`;
-		if (existsSync(subsetPath)) {
-			return `./${subsetPath}`;
-		}
-		throw new Error(
-			`[font-system] Missing required subset font: ${subsetPath}. ` +
-				`Font subsetting is enabled for production builds, but the subset file was not found. ` +
-				`Ensure 'pnpm.cmd fonts:subset' ran successfully before building.`,
-		);
-	}
-	return `./${file}`;
-}
-
-const configuredFonts =
-	resolvedFontOptions.mode === "custom"
-		? ["body", "cjk", "mono"].flatMap((role) => {
-				const resolvedRole = resolvedFontOptions.roles[role];
-				if (!resolvedRole.family) return [];
-
-				const isCompositeSans = role === "body" || role === "cjk";
-				const fallbackOpts = isCompositeSans
-					? { fallbacks: [], optimizedFallbacks: false }
-					: {};
-
-				const localVariants = getLocalFontVariants(resolvedFontOptions, role);
-				if (localVariants.length > 0) {
-					return [
-						{
-							provider: fontProviders.local(),
-							name: resolvedRole.family,
-							cssVariable: resolvedRole.cssVariable,
-							options: {
-								variants: localVariants.map((variant) => ({
-									src: [resolveVariantSrc(variant.file)],
-									weight: variant.weight,
-									style: variant.style,
-									display: resolvedRole.display,
-									...(variant.subset ? { subset: variant.subset } : {}),
-									...(variant.unicodeRange
-										? { unicodeRange: variant.unicodeRange }
-										: {}),
-								})),
-							},
-							...fallbackOpts,
-						},
-					];
-				}
-
-				const fontsourceVariants = resolvedRole.variants.filter(
-					(v) => v.source === "fontsource",
-				);
-				if (fontsourceVariants.length > 0) {
-					return [
-						{
-							provider: fontProviders.fontsource(),
-							name: resolvedRole.family,
-							cssVariable: resolvedRole.cssVariable,
-							...fallbackOpts,
-						},
-					];
-				}
-
-				return [];
-			})
-		: [];
 
 // https://astro.build/config
 export default defineConfig({
 	site: siteConfig.site,
 	base: siteConfig.base ?? "/",
 	trailingSlash: "always",
-	fonts: configuredFonts,
 	integrations: [
 		swup({
 			theme: false,
@@ -216,6 +100,14 @@ export default defineConfig({
 			compilerOptions: {
 				// CSS-source hashing keeps SSR and client scope hashes stable after moves.
 				cssHash: ({ css, hash }) => `svelte-${hash(css)}`,
+				// 过滤良性开发期提示（a11y 已由 Playwright/axe 测试覆盖；未用 CSS 选择器
+				// 与 runes 局部引用仅为提醒），避免刷屏；真正的编译错误仍照常报出。
+				warningFilter: (warning) => {
+					if (warning.code.startsWith("a11y_")) return false;
+					if (warning.code === "css_unused_selector") return false;
+					if (warning.code === "state_referenced_locally") return false;
+					return true;
+				},
 			},
 		}),
 		sitemap(),
@@ -241,14 +133,13 @@ export default defineConfig({
 				},
 			],
 		},
-		plugins: [optionalMusicSidebarPlugin, tailwindcss()],
+		plugins: [tailwindcss()],
 		optimizeDeps: {
-			include: [
-				"mermaid",
-				"@panzoom/panzoom",
-				"overlayscrollbars",
-				"@fancyapps/ui",
-			],
+			include: ["overlayscrollbars", "@fancyapps/ui"],
+			// @iconify/svelte 的 exports 仅暴露 `svelte` 条件，Vite/Rolldown 的依赖
+			// 扫描器不应用该条件会误报 "subpath is not defined by exports" 并中断预编译。
+			// 关闭自动发现（扫描器不再在冷启动时运行），include 列表仍按需预编译。
+			noDiscovery: true,
 		},
 		build: {
 			minify: "esbuild",

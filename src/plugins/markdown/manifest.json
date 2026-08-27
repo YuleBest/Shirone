@@ -46,10 +46,7 @@
 				"modules": [],
 				"network": []
 			},
-			"docs": [
-				"src/content/posts/markdown-extended.md",
-				"src/content/posts/guide/index.md"
-			],
+			"docs": [],
 			"tests": [],
 			"notes": ["两种输入统一进入同一 Admonition renderer。"]
 		},
@@ -116,7 +113,7 @@
 				"modules": ["src/utils/code-tree.ts"],
 				"network": []
 			},
-			"docs": ["src/content/posts/markdown-enhancements.md"],
+			"docs": [],
 			"tests": [
 				"tests/plugins/markdown/containers/code-tree.test.mjs",
 				"tests/site/code-tree.spec.ts"
@@ -160,7 +157,7 @@
 				"modules": [],
 				"network": []
 			},
-			"docs": ["src/content/posts/content-annotations.md"],
+			"docs": [],
 			"tests": [
 				"tests/plugins/markdown/inline/content-annotations.test.mjs",
 				"tests/site/content-annotations.spec.ts"
@@ -252,7 +249,7 @@
 				"modules": ["src/utils/code-copy.ts", "src/utils/code-collapse.ts"],
 				"network": []
 			},
-			"docs": ["src/content/posts/expressive-code.md"],
+			"docs": [],
 			"tests": ["tests/site/post-encryption.spec.ts"],
 			"notes": ["元数据具体解析规则由 Expressive Code 及已注册插件定义。"]
 		},
@@ -305,10 +302,7 @@
 				"modules": [],
 				"network": []
 			},
-			"docs": [
-				"src/content/posts/markdown-enhancements.md",
-				"docs/markdown-extensions.md"
-			],
+			"docs": ["docs/markdown-extensions.md"],
 			"tests": [
 				"tests/plugins/markdown/containers/file-tree.test.mjs",
 				"tests/plugins/markdown/core/disclosure.test.mjs",
@@ -349,10 +343,7 @@
 				"modules": [],
 				"network": ["https://api.github.com/repos/{owner}/{repo}"]
 			},
-			"docs": [
-				"src/content/posts/markdown-extended.md",
-				"src/content/posts/guide/index.md"
-			],
+			"docs": [],
 			"tests": [],
 			"notes": ["保留兼容，不作为新语法实现样板；重构前不得扩大使用面。"]
 		},
@@ -398,7 +389,7 @@
 				"modules": ["src/utils/fancybox-handler.ts"],
 				"network": ["author-declared image URLs only"]
 			},
-			"docs": ["src/content/posts/image-grid-demo/index.md"],
+			"docs": [],
 			"tests": [
 				"tests/plugins/image-grid.test.mjs",
 				"tests/site/image-grid.spec.ts"
@@ -441,7 +432,7 @@
 				"modules": [],
 				"network": ["author-declared image URLs only"]
 			},
-			"docs": ["src/content/posts/markdown-extended.md"],
+			"docs": [],
 			"tests": ["tests/plugins/rehype-markdown-images.test.mjs"],
 			"notes": ["非法或越界宽度令牌保留在 alt，不静默改写。"]
 		},
@@ -473,42 +464,9 @@
 				"modules": [],
 				"network": []
 			},
-			"docs": [
-				"src/content/posts/guide/index.md",
-				"src/content/posts/markdown.md"
-			],
+			"docs": [],
 			"tests": ["tests/site/post-encryption.spec.ts"],
 			"notes": ["解析由 remark-math 与 rehype-katex 提供。"]
-		},
-		{
-			"id": "mermaid",
-			"name": "Mermaid Diagram",
-			"status": "stable",
-			"category": "fence",
-			"source": "integration",
-			"summary": "将 mermaid fenced code 保留为可读 fallback，并在客户端按需增强为主题化 SVG。",
-			"forms": [
-				{
-					"kind": "fenced-code",
-					"pattern": "```mermaid ... ```",
-					"example": "```mermaid\nflowchart LR\n  A --> B\n```"
-				}
-			],
-			"attributes": [],
-			"implementation": ["src/plugins/remark-mermaid.mjs"],
-			"registeredIn": "src/utils/markdown-processor.mjs",
-			"styles": ["src/styles/mermaid.css"],
-			"runtime": {
-				"mode": "client-enhanced",
-				"modules": ["src/utils/mermaid.ts", "src/utils/mermaid-interaction.ts"],
-				"network": []
-			},
-			"docs": [
-				"src/content/posts/markdown-mermaid.md",
-				"src/content/posts/guide/index.md"
-			],
-			"tests": ["tests/site/mermaid.spec.ts"],
-			"notes": ["客户端初始化必须覆盖直接加载、Swup、主题变化和文章解密。"]
 		},
 		{
 			"id": "spoiler",
@@ -533,7 +491,7 @@
 				"modules": [],
 				"network": []
 			},
-			"docs": ["src/content/posts/markdown-extended.md"],
+			"docs": [],
 			"tests": [],
 			"notes": ["保留兼容；缺少触屏与键盘契约，不作为新行内语法样板。"]
 		},
@@ -578,7 +536,7 @@
 				"modules": [],
 				"network": []
 			},
-			"docs": ["src/content/posts/steps.md"],
+			"docs": [],
 			"tests": [
 				"tests/plugins/markdown/containers/steps.test.mjs",
 				"tests/site/steps.spec.ts"

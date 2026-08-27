@@ -11,13 +11,13 @@ import { fromHtml } from "hast-util-from-html";
  * - 原始 HTML `<img>` 使用同一套规则；匹配配置域名时补充
  *   `referrerpolicy="no-referrer"`。
  *
- * 跳过规则：画廊（.image-grid）与 Mermaid 容器内的图片不重复增强，
+ * 跳过规则：画廊（.image-grid）容器内的图片不重复增强，
  * 携带 `data-no-enhance` 的节点同样跳过。
  * 必须注册在 rehypeComponents 之后，确保 :::grid 已渲染出跳过类名。
  */
 
 const WIDTH_TOKEN = /(?:^|\s)w-(\d{1,3})%(?=\s|$)/g;
-const SKIP_CLASSES = new Set(["image-grid", "markdown-mermaid"]);
+const SKIP_CLASSES = new Set(["image-grid"]);
 
 function classNames(node) {
 	const value = node?.properties?.className ?? node?.properties?.class;
