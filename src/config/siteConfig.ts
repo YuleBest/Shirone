@@ -49,13 +49,12 @@ export const siteConfig: SiteConfig = {
 		allowMotion: true, // 是否允许背景微动效（开启 reduced-motion 时自动静止）
 	},
 	banner: {
-		// 推荐将图片放入 src/assets，并填写相对 src 的路径，以启用构建期 AVIF/WebP 响应式优化。
-		// 以 "/" 开头的 public 路径与远程 URL 仍可用，但会保留原图、不生成候选。
+		// 图片放 public（"/" 开头路径），构建期不做任何处理、原图直出。
 		// desktop 用于 >= 1024px；mobile 仅用于 < 1024px 的首页，手机非首页不显示壁纸。
 		// 数组顺序就是轮播顺序；只需要静态 Banner 时，每组保留一张图片即可。
 		src: {
-			desktop: ["assets/images/banner/desktop/1.webp"],
-			mobile: ["assets/images/banner/mobile/1.webp"],
+			desktop: ["/assets/banner/desktop/1.webp"],
+			mobile: ["/assets/banner/mobile/1.webp"],
 		},
 		// 图片裁切焦点："top"、"center" 或 "bottom"。
 		position: "center",
