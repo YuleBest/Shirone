@@ -1,6 +1,5 @@
 import I18nKey from "@i18n/i18nKey";
 import { i18n } from "@i18n/translation";
-import { devicesConfig } from "@/config/devicesConfig";
 import type { NavBarConfig, NavBarLink } from "@/types/navBarConfig";
 
 /**
@@ -29,12 +28,6 @@ export const LinkPresets: Record<string, NavBarLink> = {
 		icon: "material-symbols:handshake-outline-rounded",
 		pageKey: "friends",
 	},
-	Devices: {
-		name: i18n(I18nKey.devices),
-		url: "/devices/",
-		icon: "material-symbols:devices-rounded",
-		pageKey: "devices",
-	},
 	Categories: {
 		name: i18n(I18nKey.categories),
 		url: "/categories/",
@@ -55,7 +48,7 @@ export const LinkPresets: Record<string, NavBarLink> = {
 	},
 	GitHub: {
 		name: "GitHub",
-		url: "https://github.com/LyraVoid/Shirone",
+		url: "https://github.com/YuleBest",
 		icon: "fa6-brands:github",
 		external: true,
 		pageKey: "github",
@@ -71,7 +64,6 @@ export const navBarConfig: NavBarConfig = {
 			name: i18n(I18nKey.more),
 			icon: "material-symbols:apps-rounded",
 			children: [
-				...(devicesConfig.enable ? [LinkPresets.Devices] : []),
 				// 分类/标签入口不进导航菜单（避免菜单项过多），预设已登记指向独立页面，
 				// 需要时取消注释即可
 				// LinkPresets.Categories,

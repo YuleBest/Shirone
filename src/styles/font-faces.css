@@ -1,15 +1,28 @@
-/* Font roles use system-family fallbacks in pure system mode.
-   --font-body / --font-cjk are defined here (they were previously injected at
-   build time by the now-removed custom-font pipeline). */
+/* 本地可变字体：英文/拉丁正文 Google Sans Flex，代码等宽 Geist Mono；
+   CJK 仍走系统字体。变量直接定义在 :root（此前由已移除的自定义字体管线注入）。 */
+@font-face {
+    font-family: "Google Sans Flex";
+    src: url("../assets/fonts/GoogleSansFlex-Variable.woff2") format("woff2");
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Geist Mono";
+    src: url("../assets/fonts/GeistMono-Variable.woff2") format("woff2");
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
 :root {
-    --font-body: ui-sans-serif, system-ui, sans-serif;
+    --font-body: "Google Sans Flex", ui-sans-serif, system-ui, sans-serif;
     --font-cjk: system-ui, sans-serif;
     --font-body-fallback: ui-sans-serif, system-ui, sans-serif;
     --font-cjk-fallback: system-ui, sans-serif;
     --m3e-font-mono-fallback: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --m3e-font-mono-family: "Geist Mono", var(--m3e-font-mono-fallback);
     --m3e-font-sans: var(--font-body), var(--font-cjk), var(--font-body-fallback), "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji";
     --font-sans: var(--m3e-font-sans);
-    --m3e-font-mono-family: var(--font-mono, var(--m3e-font-mono-fallback));
     --font-mono: var(--m3e-font-mono-family);
 }
 

@@ -17,7 +17,6 @@ const pages = [
 	{ name: "首页-网格", path: "/", layout: "grid" },
 	{ name: "归档", path: "/archive/" },
 	{ name: "友链", path: "/friends/" },
-	{ name: "设备展示", path: "/devices/" },
 	{ name: "关于", path: "/about/" },
 	{ name: "文章页", path: "/posts/markdown-enhancements/" },
 	{ name: "分类索引", path: "/categories/" },

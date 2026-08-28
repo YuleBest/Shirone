@@ -17,7 +17,8 @@ const DESCRIPTION_FONT_SIZE = 30;
 const DESCRIPTION_LINE_HEIGHT = 42;
 const FOOTER_HEIGHT = 170;
 const BOTTOM_PADDING = 48;
-const FONT_FAMILY = 'Roboto, system-ui, -apple-system, "Segoe UI", sans-serif';
+const FONT_FAMILY =
+	'"Google Sans Flex", system-ui, -apple-system, "Segoe UI", sans-serif';
 
 export interface SharePosterPalette {
 	surfaceContainerLowest: string;

@@ -11,9 +11,11 @@ import { resolveFontOptions as resolve } from "../utils/font-options.ts";
  *  2. `cjk` ：中日韩字体（汉字、日文平假名/片假名、韩文）
  *  3. `mono`：等宽代码字体（文章代码块、行内代码、终端输出）
  *
- * 当前使用「纯系统字体」模式（`mode: "system"`），完全依赖访客设备自带字体，
- * 不打包任何第三方字体文件，也不发起任何字体网络请求，加载最快、最省流量。
- * 如需启用自托管字体（本地 `.woff2` 或 Fontsource npm 包），请：
+ * 当前站点字体通过 `src/styles/font-faces.css` 的 `@font-face` 直接加载本地
+ * 可变字体（英文/拉丁 = Google Sans Flex，代码等宽 = Geist Mono，文件在
+ * `src/assets/fonts/`），中文走系统字体；本配置保持 `mode: "system"`，
+ * 不参与 Astro 字体管线（管线已移除）。
+ * 如需启用配置驱动的自托管字体，请：
  *  1. 将 `mode` 改为 `"custom"`，并按下方场景填写 `fontFamilies`；
  *  2. `source: "local"`（字体文件放在 `src/assets/fonts/`）或
  *     `source: "fontsource"`（安装 npm 包后填对应 CSS 路径）。

@@ -21,19 +21,6 @@ export const zh_CN: Translation = {
 	[Key.pinned]: "置顶",
 	[Key.loadMore]: "加载更多",
 
-	[Key.devices]: "我的设备",
-	[Key.devicesBanner]: "日常使用的数码装备、工作台与生产力工具。",
-	[Key.devicesCounts]: "款设备",
-	[Key.devicesNoResults]: "没有找到匹配的设备",
-	[Key.devicesSearchPlaceholder]: "按名称、品牌或规格搜索...",
-	[Key.devicesCategoryLabel]: "设备分类",
-	[Key.devicesStatusActive]: "主力在役",
-	[Key.devicesStatusBackup]: "备用设备",
-	[Key.devicesStatusArchived]: "退役收藏",
-	[Key.devicesStatusWishlist]: "心愿清单",
-	[Key.devicesViewSpecs]: "查看详情",
-	[Key.devicesFeatured]: "主力推荐",
-
 	[Key.postPasswordTitle]: "受保护的文章",
 	[Key.postPasswordDescription]:
 		"该文章已被加密保护，请输入访问密码以解锁内容。",

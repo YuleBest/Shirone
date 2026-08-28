@@ -21,7 +21,6 @@ export {
 	type ResolvedCommentOptions,
 	resolveCommentOptions,
 } from "./commentConfig";
-export { devicesConfig } from "./devicesConfig";
 export { expressiveCodeConfig } from "./expressiveCodeConfig";
 export { fabConfig } from "./fabConfig";
 export {

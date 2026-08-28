@@ -9,10 +9,10 @@ import type {
  * 类型见 src/types/config.ts。
  */
 export const siteConfig: SiteConfig = {
-	site: "https://shirone.mysqil.com/",
+	site: "https://blog.yule.best/",
 	base: "/",
-	title: "Shirone",
-	subtitle: "A Material 3 anime blog",
+	title: "YuleBest",
+	subtitle: "于乐的小小天地",
 	// 电脑端顶栏标题与导航内容区域："left" 左对齐，"center" 居中。
 	topAppBar: {
 		contentAlign: "center",
@@ -67,13 +67,13 @@ export const siteConfig: SiteConfig = {
 		homeText: {
 			// 仅在首页 Banner 中显示，标题与副标题会上下居中排列。
 			enable: true,
-			title: "Shirone",
+			title: "于乐的小小天地",
 			subtitle: [
-				"特別なことはないけど、君がいると十分です",
-				"今でもあなたは私の光",
-				"君ってさ、知らないうちに私の毎日になってたよ",
-				"君と話すと、なんか毎日がちょっと楽しくなるんだ",
-				"今日はなんでもない日。でも、ちょっとだけいい日",
+				"永远相信美好的事情即将发生",
+				"人生亦有命，安能行叹复坐愁",
+				"我与我周旋久，宁作我",
+				"人生如逆旅，我亦是行人",
+				"珍惜眼前人，莫负好时光",
 			],
 			typewriter: {
 				// 副标题逐字显示；关闭后直接显示完整副标题。
@@ -83,7 +83,7 @@ export const siteConfig: SiteConfig = {
 				// 回退反向删除速度（每个字符间隔，毫秒）。
 				deleteSpeed: 50,
 				// 打字完成后停顿时间，单位为毫秒。
-				pauseTime: 2000,
+				pauseTime: 3000,
 				// 完成后是否循环播放；关闭表示只播放一次。
 				loop: true,
 			},
@@ -106,11 +106,11 @@ export const siteConfig: SiteConfig = {
 	// Markdown 正文图片处理；仅匹配远程图片，不会产生额外网络请求或客户端代码。
 	imageOptimization: {
 		// 为需要防盗链兼容的图片 CDN 添加 referrerpolicy="no-referrer"，支持通配符。
-		noReferrerDomains: ["*.hdslb.com"],
+		noReferrerDomains: [],
 	},
 	toc: {
 		enable: true, // Display the table of contents on the right side of the post
-		depth: 2, // Maximum heading depth to show in the table, from 1 to 3
+		depth: 3, // Maximum heading depth to show in the table, from 1 to 3
 	},
 	progressIndicator: {
 		// 进度条预设样式：dual 双向扫描（官方默认双线）/ single 单向扫描（单线）
