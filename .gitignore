@@ -36,6 +36,9 @@ yarn.lock
 .codex-*.log
 research/
 
+# wrangler local state
+.wrangler/
+
 # playwright
 .playwright-cli/
 test-results/

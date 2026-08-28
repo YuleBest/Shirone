@@ -1,4 +1,5 @@
 import { fileURLToPath } from "node:url";
+import cloudflare from "@astrojs/cloudflare";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import svelte from "@astrojs/svelte";
@@ -22,6 +23,10 @@ export default defineConfig({
 	site: siteConfig.site,
 	base: siteConfig.base ?? "/",
 	trailingSlash: "always",
+	// Cloudflare 适配器：避免每次部署现场跑 `astro add cloudflare` + 二次构建；
+	// 图片走 passthrough（构建期零处理、原图直出）；主题不使用 Astro.session，显式关闭以免引入 KV 绑定。
+	adapter: cloudflare({ imageService: "passthrough" }),
+	session: false,
 	integrations: [
 		swup({
 			theme: false,
