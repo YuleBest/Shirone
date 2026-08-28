@@ -7,8 +7,6 @@ category: 笔记
 draft: false
 ---
 
-# 跳过酷安链接中间页
-
 众所周知，酷安会给每个链接加上 `https://www.coolapk.com/link/` 前缀，以跳转到中间页，但是这很烦人，所以我们需要去掉这个前缀。
 
 <!-- more -->
