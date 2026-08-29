@@ -40,7 +40,6 @@ fetch_html() {
 - ︎`create_time`：发布时间的 **时间戳**
 
 ```bash
-
 extract_video_details() {
     local html="$1"
     video_id=$(echo "$html" | grep -oE 'video_id=[a-zA-Z0-9]+' | sed 's/video_id=//' | head -n1)

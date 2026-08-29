@@ -15,9 +15,7 @@ HTML 语法是将 HTML 标签直接写入 Markdown 源文件中，支持 HTML �
 
 下面举一些例子：
 
-::: tabs
-
-@tab Markdown
+- Markdown
 
 ```md
 <h1>标题</h1>
@@ -47,7 +45,7 @@ HTML 语法是将 HTML 标签直接写入 Markdown 源文件中，支持 HTML �
 <u>下划线文本</u>
 ```
 
-@tab 渲染效果
+- 渲染效果
 
 <h1>标题</h1>
 
@@ -74,4 +72,3 @@ HTML 语法是将 HTML 标签直接写入 Markdown 源文件中，支持 HTML �
 <font size=24 color=red>24 号字体 + 红色</font>
 
 <u>下划线文本</u>
-:::
