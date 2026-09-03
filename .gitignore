@@ -49,3 +49,6 @@ tests/site/visual.spec.ts-snapshots/
 artifacts/lighthouse/*
 !artifacts/lighthouse/.gitkeep
 .lighthouseci/
+
+# obsidian
+.obsidian/
